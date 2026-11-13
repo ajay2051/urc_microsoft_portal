@@ -186,7 +186,7 @@ class LiveGraphClient:
 
     @staticmethod
     def _backoff(attempt: int) -> float:
-        return min(MAX_RETRY_AFTER_SECONDS, (2**attempt) * 0.5) * (0.5 + random.random() / 2)  # noqa: S311
+        return min(MAX_RETRY_AFTER_SECONDS, (2**attempt) * 0.5) * (0.5 + random.random() / 2)
 
     @staticmethod
     def _retry_after(response: httpx.Response) -> float | None:

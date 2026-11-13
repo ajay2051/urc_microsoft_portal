@@ -18,7 +18,7 @@ class AuditImmutableError(RuntimeError):
 
 
 class AuditQuerySet(models.QuerySet):
-    def update(self, **kwargs):  # noqa: D401
+    def update(self, **kwargs):
         raise AuditImmutableError("Audit events are append-only.")
 
     def delete(self):

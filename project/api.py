@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from django_bolt import BoltAPI, OpenAPIConfig
 from django.conf import settings
+from django_bolt import BoltAPI, OpenAPIConfig
 
 from core.auth import EntraAuthMiddleware
 from core.middleware import SecurityHeadersMiddleware
@@ -17,11 +17,11 @@ api = BoltAPI(
     else None,
 )
 
-from core.api import me_router, public_router  # noqa: E402
-from audit.api import router as audit_router  # noqa: E402
-from clients.api import router as clients_router  # noqa: E402
-from integrations.api import graph_router, integrations_router, sync_router  # noqa: E402
-from onboarding.api import router as onboarding_router  # noqa: E402
+from audit.api import router as audit_router
+from clients.api import router as clients_router
+from core.api import me_router, public_router
+from integrations.api import graph_router, integrations_router, sync_router
+from onboarding.api import router as onboarding_router
 
 api.include_router(public_router)
 api.include_router(me_router)

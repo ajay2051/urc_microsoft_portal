@@ -8,12 +8,11 @@ from uuid import UUID
 
 import msgspec
 from django_bolt.serializers import field_validator
-
-from core.schemas import StrictRequest
 from msgspec import Meta
 
 from clients.models import ClientStatus
 from core.pagination import choice
+from core.schemas import StrictRequest
 
 StatusLiteral = Literal["prospect", "onboarding", "active", "suspended", "offboarded"]
 
@@ -27,7 +26,7 @@ class StatusChangeRequest(StrictRequest):
     reason: Annotated[str, Meta(min_length=3, max_length=500, description="Why the status is changing")]
 
     @field_validator("reason")
-    def _reason_not_blank(cls, value: str) -> str:  # noqa: N805
+    def _reason_not_blank(cls, value: str) -> str:
         cleaned = " ".join(value.split())
         if len(cleaned) < 3:
             raise ValueError("reason must contain at least 3 non-whitespace characters")

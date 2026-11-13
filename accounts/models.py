@@ -25,7 +25,7 @@ class StaffRole(models.TextChoices):
 class StaffUserManager(BaseUserManager["StaffUser"]):
     use_in_migrations = True
 
-    def create_staff(self, email: str, display_name: str, role: str = StaffRole.STAFF, **extra) -> "StaffUser":
+    def create_staff(self, email: str, display_name: str, role: str = StaffRole.STAFF, **extra) -> StaffUser:
         if not email:
             raise ValueError("email is required")
         user = self.model(email=self.normalize_email(email).lower(), display_name=display_name, role=role, **extra)

@@ -9,7 +9,6 @@ import msgspec
 from django_bolt.serializers import field_validator
 
 from core.schemas import StrictRequest
-
 from core.validators import normalize_guid
 
 
@@ -18,7 +17,7 @@ class IntegrationUpsertRequest(StrictRequest):
     sync_enabled: bool = True
 
     @field_validator("tenant_id")
-    def _guid(cls, value: str) -> str:  # noqa: N805
+    def _guid(cls, value: str) -> str:
         return normalize_guid(value)
 
 

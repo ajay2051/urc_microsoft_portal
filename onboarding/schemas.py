@@ -5,6 +5,7 @@ from typing import Any
 from uuid import UUID
 
 import msgspec
+
 from core.schemas import StrictRequest
 
 

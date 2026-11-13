@@ -4,7 +4,7 @@ from tests.keys import API_CLIENT_ID, JWKS_JSON, TENANT_ID
 
 os.environ.setdefault("DJANGO_DEBUG", "true")
 
-from project.settings import *  # noqa: E402,F401,F403
+from project.settings import *
 
 DEBUG = True
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}}

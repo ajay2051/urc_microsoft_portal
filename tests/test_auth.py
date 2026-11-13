@@ -141,9 +141,8 @@ def test_role_change_takes_effect_immediately(api_client, staff):
 
 
 def test_every_route_except_probes_requires_authentication(api_client):
-    from project.api import api
-
     from core.auth import PUBLIC_PATHS
+    from project.api import api
 
     checked = 0
     for method, path, *_ in api._routes:

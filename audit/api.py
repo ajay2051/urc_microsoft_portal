@@ -12,7 +12,15 @@ from audit.models import AuditEvent, AuditOutcome
 from audit.schemas import AuditEventOut
 from core.auth import admin_only
 from core.errors import UnprocessableEntity
-from core.pagination import DEFAULT_PAGE_SIZE, Page, PageNumber, PageSize, build_page, choice, paginate_bounds
+from core.pagination import (
+    DEFAULT_PAGE_SIZE,
+    Page,
+    PageNumber,
+    PageSize,
+    build_page,
+    choice,
+    paginate_bounds,
+)
 from core.router import protected_router
 
 router = protected_router("/audit", "audit")

@@ -8,7 +8,6 @@ from integrations.graph import GraphError, LiveGraphClient
 from tests.conftest import GUEST_TENANT
 
 
-
 def user(i):
     return {
         "id": f"00000000-0000-0000-0000-{i:012d}",

@@ -11,7 +11,11 @@ from audit.services import record_event
 from clients.models import ALLOWED_TRANSITIONS, Client, ClientStatus
 from core.errors import Conflict, NotFound
 from integrations.models import ConsentStatus, TenantIntegration
-from onboarding.models import ACTIVE_ONBOARDING_STATUSES, ONBOARDING_STEPS, OnboardingRun
+from onboarding.models import (
+    ACTIVE_ONBOARDING_STATUSES,
+    ONBOARDING_STEPS,
+    OnboardingRun,
+)
 
 
 def start_onboarding(

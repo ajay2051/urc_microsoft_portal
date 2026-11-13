@@ -286,7 +286,7 @@ async def run_sync(*, client_id: UUID, actor: StaffUser, request_id: str, ip_add
         if exc.code in CONSENT_CODES:
             await run_atomic_unit(lambda: _mark_consent_revoked(client_id))
         raise _map_graph_error(exc) from exc
-    except Exception as exc:  # noqa: BLE001 - never leave the lock held
+    except Exception as exc:
         logger.exception("Unexpected error while fetching Graph users")
         await run_atomic_unit(
             lambda: _fail_run(run.pk, code="unexpected", message="Unexpected error.", actor=actor, request_id=request_id, ip=ip_address)
@@ -303,7 +303,7 @@ async def run_sync(*, client_id: UUID, actor: StaffUser, request_id: str, ip_add
             lambda: _fail_run(run.pk, code="suspicious_result", message=reason, actor=actor, request_id=request_id, ip=ip_address)
         )
         raise Conflict(str(exc), code="suspicious_sync_result") from exc
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         logger.exception("Failed to apply Graph users")
         await run_atomic_unit(
             lambda: _fail_run(run.pk, code="apply_failed", message="Failed to store users.", actor=actor, request_id=request_id, ip=ip_address)

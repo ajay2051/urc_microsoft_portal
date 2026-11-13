@@ -46,7 +46,7 @@ def _db_ping() -> None:
 async def ready() -> Health:
     try:
         await run_in_orm_executor(_db_ping)
-    except Exception as exc:  # noqa: BLE001 - never leak driver details to probes
+    except Exception as exc:
         raise UpstreamUnavailable("Database unavailable.", code="db_unavailable") from exc
     return Health(status="ready")
 

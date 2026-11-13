@@ -27,7 +27,14 @@ from clients.services import (
 from core.auth import current_staff
 from core.db import run_atomic_unit
 from core.http import client_ip, request_id
-from core.pagination import DEFAULT_PAGE_SIZE, Page, PageNumber, PageSize, build_page, paginate_bounds
+from core.pagination import (
+    DEFAULT_PAGE_SIZE,
+    Page,
+    PageNumber,
+    PageSize,
+    build_page,
+    paginate_bounds,
+)
 from core.router import protected_router
 from integrations.models import TenantIntegration
 

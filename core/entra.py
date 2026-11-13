@@ -117,7 +117,7 @@ class JWKSCache:
             with self._lock:
                 self._load(document)
                 self._fetched_at = time.monotonic()
-        except Exception:  # noqa: BLE001 - keep serving with last known-good keys
+        except Exception:
             logger.exception("Failed to refresh Entra signing keys")
 
 

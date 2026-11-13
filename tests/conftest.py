@@ -7,6 +7,8 @@ from collections.abc import Callable
 import jwt
 import pytest
 from django_bolt.testing import TestClient
+from integrations.graph import GraphUser, MockGraphClient, set_graph_client
+
 
 from accounts.models import StaffRole, StaffUser
 from clients.models import Client, ClientStatus
@@ -87,10 +89,9 @@ def client_factory(db):
     return _make
 
 
-__all__ = ["make_token", "OTHER_PRIVATE_KEY", "TENANT_ID", "API_CLIENT_ID", "ISSUER"]
+__all__ = ["API_CLIENT_ID", "ISSUER", "OTHER_PRIVATE_KEY", "TENANT_ID", "make_token"]
 
 
-from integrations.graph import GraphUser, MockGraphClient, set_graph_client  # noqa: E402
 
 GUEST_TENANT = "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
 
