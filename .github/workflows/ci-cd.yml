@@ -89,4 +89,15 @@ jobs:
     needs: image
     if: github.ref == 'refs/heads/main' && github.event_name == 'push' && vars.DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-latest
-    environment: production
+    environment: production        # add required reviewers in GitHub settings for manual approval
+    steps:
+      - uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            cd /opt/client-ops
+            docker compose pull
+            docker compose up -d --remove-orphans
+            docker image prune -f
