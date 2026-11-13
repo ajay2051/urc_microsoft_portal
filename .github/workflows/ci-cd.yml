@@ -71,6 +71,7 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: .
+          pull: true
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
@@ -88,13 +89,13 @@ jobs:
     needs: image
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
-    environment: production        # add required reviewers in GitHub settings for manual approval
+    environment: production
     steps:
       - uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
+#          host: ${{ secrets.DEPLOY_HOST }}
+#          username: ${{ secrets.DEPLOY_USER }}
+#          key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
             cd /opt/client-ops
             docker compose pull
